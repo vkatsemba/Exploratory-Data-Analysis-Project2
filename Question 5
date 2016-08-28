@@ -9,7 +9,7 @@ library(data.table)
 ##Generate a Data Table for the Summary and the Source Classification Code and obtain the code for motor vehicles.
 NEIDataTable <- data.table(NEI)
 SCCDataTable <- data.table(SCC)
-SCCMotor <- SCCDataTable[grep("Motor", EI.Sector), SCC]
+SCCMotor <- SCCDataTable[grep("[Mm]obile|[Vv]ehicles", EI.Sector), SCC]
 
 ##Aggregate the Motor Emissions and use the Baltimore data again
 BALTMotor <- NEIDataTable[SCC %in% SCCMotor, sum(Emissions), by = c("year", "fips")][fips == "24510"]
